@@ -3,6 +3,10 @@ import { Platform, StyleSheet, Text, View } from "react-native";
 
 type Props = {};
 export default class FavoritesScreen extends Component<Props> {
+  static navigationOptions = {
+    title: "Favorites",
+  };
+
   render() {
     return (
       <View style={styles.container}>
