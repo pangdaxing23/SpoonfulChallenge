@@ -4,7 +4,7 @@ import { Platform, StyleSheet, Text, View } from "react-native";
 type Props = {};
 export default class ExploreScreen extends Component<Props> {
   static navigationOptions = {
-    title: "Explore",
+    title: "EXPLORE",
   };
 
   render() {
@@ -25,6 +25,7 @@ const styles = StyleSheet.create({
   },
   welcome: {
     fontSize: 20,
+    fontFamily: "Raleway-Regular",
     textAlign: "center",
     margin: 10,
   },

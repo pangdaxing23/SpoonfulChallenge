@@ -4,7 +4,7 @@ import { Platform, StyleSheet, Text, View } from "react-native";
 type Props = {};
 export default class FavoritesScreen extends Component<Props> {
   static navigationOptions = {
-    title: "Favorites",
+    title: "FAVORITES",
   };
 
   render() {
@@ -27,6 +27,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     textAlign: "center",
     margin: 10,
+    fontFamily: "Raleway-Regular",
   },
   instructions: {
     textAlign: "center",
