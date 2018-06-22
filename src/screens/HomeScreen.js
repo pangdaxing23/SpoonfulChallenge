@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import { Platform, StyleSheet, Text, View } from "react-native";
+import DietSelection from "../components/DietSelection";
+
+import { diets } from "../constants";
 
 type Props = {};
 export default class HomeScreen extends Component<Props> {
@@ -10,6 +13,7 @@ export default class HomeScreen extends Component<Props> {
   render() {
     return (
       <View style={styles.container}>
+        <DietSelection diets={diets} />
         <Text style={styles.welcome}>Hello World from Home!</Text>
       </View>
     );

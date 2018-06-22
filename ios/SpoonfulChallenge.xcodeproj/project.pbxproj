@@ -50,6 +50,7 @@
 		EFEA4FA18BFB4776BCB59258 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 767B8C2566B74264A0F9EE96 /* Zocial.ttf */; };
 		FE5FA4C325AE43E583566265 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 829C2B4FC7FF4AEDAE494F62 /* FontAwesome.ttf */; };
 		FDBC3036BB11423E8B659C2B /* Raleway-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 62AB07F64A32427DB84136E7 /* Raleway-Regular.ttf */; };
+		40B0193B79984B848CE44F8F /* Raleway-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B2353B7970ED4D1B8DA08E28 /* Raleway-Bold.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -376,6 +377,7 @@
 		E5BEE4748DF9459C9CFD9351 /* RNVectorIcons.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNVectorIcons.xcodeproj; path = "../node_modules/react-native-vector-icons/RNVectorIcons.xcodeproj"; sourceTree = "<group>"; };
 		EE5855990844492F85498913 /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
 		62AB07F64A32427DB84136E7 /* Raleway-Regular.ttf */ = {isa = PBXFileReference; name = "Raleway-Regular.ttf"; path = "../assets/fonts/Raleway-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		B2353B7970ED4D1B8DA08E28 /* Raleway-Bold.ttf */ = {isa = PBXFileReference; name = "Raleway-Bold.ttf"; path = "../assets/fonts/Raleway-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -508,6 +510,7 @@
 				947B57C57EAE449E92056BB8 /* SimpleLineIcons.ttf */,
 				767B8C2566B74264A0F9EE96 /* Zocial.ttf */,
 				62AB07F64A32427DB84136E7 /* Raleway-Regular.ttf */,
+				B2353B7970ED4D1B8DA08E28 /* Raleway-Bold.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -1145,6 +1148,7 @@
 				06F52519D1EC472EAD41F0CE /* SimpleLineIcons.ttf in Resources */,
 				EFEA4FA18BFB4776BCB59258 /* Zocial.ttf in Resources */,
 				FDBC3036BB11423E8B659C2B /* Raleway-Regular.ttf in Resources */,
+				40B0193B79984B848CE44F8F /* Raleway-Bold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

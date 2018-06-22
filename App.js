@@ -17,14 +17,9 @@ export default class App extends Component<Props> {
   }
 }
 
-const HomeStack = createStackNavigator(
-  {
-    Home: HomeScreen,
-  },
-  {
-    initialRouteName: "Home",
-  },
-);
+const HomeStack = createStackNavigator({
+  Home: HomeScreen,
+});
 
 const TabNavigation = createBottomTabNavigator(
   {
