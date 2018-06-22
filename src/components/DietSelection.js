@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Platform, StyleSheet, Text, View } from "react-native";
 import { ButtonGroup } from "react-native-elements";
+import { primaryColor } from "../constants";
 
 type Props = {
   diets: Array<boolean>,
@@ -47,7 +48,7 @@ const styles = StyleSheet.create({
     marginLeft: 0,
     alignItems: "stretch",
     height: 50,
-    borderColor: "#6C2DFC",
+    borderColor: primaryColor,
     borderWidth: 5,
   },
   buttons: {
@@ -56,7 +57,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
   },
   selectedButton: {
-    backgroundColor: "#6C2DFC",
+    backgroundColor: primaryColor,
     borderColor: "#FFFFFF",
     borderWidth: 1,
   },

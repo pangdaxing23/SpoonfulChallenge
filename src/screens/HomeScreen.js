@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Platform, StyleSheet, Text, View } from "react-native";
 import DietSelection from "../components/DietSelection";
 import SearchBar from "../components/SearchBar";
+import RecipeCard from "../components/RecipeCard";
 
 import { diets } from "../constants";
 
@@ -16,6 +17,8 @@ export default class HomeScreen extends Component<Props> {
       <View style={styles.container}>
         <DietSelection diets={diets} />
         <SearchBar />
+        <RecipeCard />
+        <RecipeCard />
         <Text style={styles.welcome}>Hello World from Home!</Text>
       </View>
     );
@@ -25,7 +28,7 @@ export default class HomeScreen extends Component<Props> {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
+    justifyContent: "flex-start",
     alignItems: "stretch",
     backgroundColor: "#ECECEF",
   },
@@ -34,10 +37,5 @@ const styles = StyleSheet.create({
     fontFamily: "Raleway-Regular",
     textAlign: "center",
     margin: 10,
-  },
-  instructions: {
-    textAlign: "center",
-    color: "#333333",
-    marginBottom: 5,
   },
 });
