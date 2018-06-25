@@ -1,5 +1,6 @@
 # SpoonfulChallenge
 
 ### Install and Run
-`yarn`
-`react-native run-ios`
+1.`yarn`
+
+2.`react-native run-ios`
