@@ -6,6 +6,7 @@ export const CHANGE_SEARCH_TERM = "CHANGE_SEARCH_TERM";
 export const REQUEST_RECIPES = "REQUEST_RECIPES";
 export const REQUEST_MORE_RECIPES = "REQUEST_MORE_RECIPES";
 export const RECEIVE_RECIPES = "RECEIVE_RECIPES";
+export const RECEIVE_NO_RECIPES = "RECEIVE_NO_RECIPES";
 export const RECEIVE_MORE_RECIPES = "RECEIVE_MORE_RECIPES";
 
 import { defaultCard, edamamApiSearch, appId, appKey } from "../constants";
@@ -34,17 +35,23 @@ const requestMoreRecipes = (searchTerm, diet) => ({
   diet,
 });
 
-const receiveRecipes = (searchTerm, diet, hits) => ({
-  type: RECEIVE_RECIPES,
-  searchTerm,
-  diet,
-  recipes: hits.map(hit => ({
-    id: uuidv4(),
-    recipeName: hit.recipe.label,
-    calories: hit.recipe.calories,
-    cookingTime: hit.recipe.totalTime,
-    imageSource: hit.recipe.image,
-  })),
+const receiveRecipes = (searchTerm, diet, hits) => {
+  return {
+    type: RECEIVE_RECIPES,
+    searchTerm,
+    diet,
+    recipes: hits.map(hit => ({
+      id: uuidv4(),
+      recipeName: hit.recipe.label,
+      calories: hit.recipe.calories,
+      cookingTime: hit.recipe.totalTime,
+      imageSource: hit.recipe.image,
+    })),
+  };
+};
+
+const receiveNoRecipes = () => ({
+  type: RECEIVE_NO_RECIPES,
 });
 
 const receiveMoreRecipes = (searchTerm, diet, hits) => ({
@@ -79,9 +86,13 @@ export const fetchRecipes = (searchTerm, diet) => {
     })
       .then(response => {
         console.log(response);
-        dispatch(receiveRecipes(searchTerm, diet, response.data.hits));
+        if (!response.data.hits.length) {
+          dispatch(receiveNoRecipes());
+        } else {
+          dispatch(receiveRecipes(searchTerm, diet, response.data.hits));
+        }
       })
-      .catch(error => console.error(error.response));
+      .catch(handleError);
   };
 };
 
@@ -105,8 +116,19 @@ export const fetchMoreRecipes = (searchTerm, diet, recipes) => {
     })
       .then(response => {
         console.log(response);
+
         dispatch(receiveMoreRecipes(searchTerm, diet, response.data.hits));
       })
-      .catch(error => console.error(error.response));
+      .catch(handleError);
   };
+};
+
+const handleError = error => {
+  switch (error.response.status) {
+    case 401:
+    case 403:
+    // TODO: pop up modal or something
+  }
+  console.log(error);
+  // switch(error)
 };

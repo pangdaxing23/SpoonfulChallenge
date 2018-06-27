@@ -40,7 +40,7 @@ export default class RecipeList extends Component<Props> {
   };
 
   render() {
-    const { data, loading, refreshing } = this.props;
+    const { data, loading, refreshing, empty } = this.props;
     return (
       <View>
         {refreshing ? (
@@ -49,11 +49,18 @@ export default class RecipeList extends Component<Props> {
           <View>
             {!loading &&
               !refreshing &&
-              !data.length && (
+              !data.length &&
+              (empty ? (
+                <View style={styles.instructionsContainer}>
+                  <Text style={styles.instructions}>
+                    No results were found.
+                  </Text>
+                </View>
+              ) : (
                 <View style={styles.instructionsContainer}>
                   <Text style={styles.instructions}>Nothing here yet...</Text>
                 </View>
-              )}
+              ))}
             <FlatList
               data={data}
               keyExtractor={this.keyExtractor}
@@ -77,6 +84,7 @@ const styles = StyleSheet.create({
   },
   instructions: {
     fontSize: 22,
+    fontFamily: "Raleway-Regular",
     marginTop: 100,
   },
   instructionsContainer: {

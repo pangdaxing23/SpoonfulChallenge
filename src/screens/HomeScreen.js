@@ -54,7 +54,7 @@ class HomeScreen extends Component<Props> {
   };
 
   render() {
-    const { data, loading, refreshing, diet } = this.props;
+    const { data, loading, refreshing, empty, diet } = this.props;
     return (
       <View style={styles.container}>
         <DietSelection
@@ -67,6 +67,7 @@ class HomeScreen extends Component<Props> {
           data={data}
           loading={loading}
           refreshing={refreshing}
+          empty={empty}
           onEndReached={this.onEndReached}
         />
       </View>
@@ -78,6 +79,7 @@ const mapStateToProps = (state, props) => {
   return {
     loading: state.recipes.loading,
     refreshing: state.recipes.refreshing,
+    empty: state.recipes.empty,
     data: state.recipes.data,
     diet: state.diet,
     searchTerm: state.searchTerm,
