@@ -26,6 +26,9 @@ class HomeScreen extends Component<Props> {
   }
 
   onSelectDiet = diet => {
+    if (this.props.searchTerm.length) {
+      this.props.fetchRecipes(this.props.searchTerm, diet);
+    }
     this.props.changeDiet(diet);
   };
 
@@ -42,7 +45,7 @@ class HomeScreen extends Component<Props> {
   };
 
   render() {
-    const { data, loading, diet } = this.props;
+    const { data, loading, refreshing, diet } = this.props;
     return (
       <View style={styles.container}>
         <DietSelection
@@ -54,6 +57,7 @@ class HomeScreen extends Component<Props> {
         <RecipeList
           data={data}
           loading={loading}
+          refreshing={refreshing}
           onEndReached={this.onEndReached}
         />
       </View>
@@ -64,6 +68,7 @@ class HomeScreen extends Component<Props> {
 const mapStateToProps = (state, props) => {
   return {
     loading: state.recipes.loading,
+    refreshing: state.recipes.refreshing,
     data: state.recipes.data,
     diet: state.diet,
     searchTerm: state.searchTerm,

@@ -30,7 +30,9 @@ const RecipeCard = ({
         </View>
 
         <View style={styles.description}>
-          <Text style={styles.recipeName}>{recipeName}</Text>
+          <Text style={styles.recipeName} numberOfLines={1}>
+            {recipeName}
+          </Text>
           <View style={styles.infoContainer}>
             <Text style={styles.info}>{calories.toFixed(0)} cal</Text>
             <Text>{" | "}</Text>
@@ -66,6 +68,7 @@ const styles = StyleSheet.create({
   description: {
     justifyContent: "center",
     paddingLeft: 10,
+    paddingRight: 95, // to truncate overflowing text
     height: 50,
     backgroundColor: "white",
   },

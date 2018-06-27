@@ -4,6 +4,7 @@ import uuidv4 from "uuid/v4";
 export const CHANGE_DIET = "CHANGE_DIET";
 export const CHANGE_SEARCH_TERM = "CHANGE_SEARCH_TERM";
 export const REQUEST_RECIPES = "REQUEST_RECIPES";
+export const REQUEST_MORE_RECIPES = "REQUEST_MORE_RECIPES";
 export const RECEIVE_RECIPES = "RECEIVE_RECIPES";
 export const RECEIVE_MORE_RECIPES = "RECEIVE_MORE_RECIPES";
 
@@ -23,6 +24,12 @@ export const changeSearchTerm = searchTerm => ({
 
 const requestRecipes = (searchTerm, diet) => ({
   type: REQUEST_RECIPES,
+  searchTerm,
+  diet,
+});
+
+const requestMoreRecipes = (searchTerm, diet) => ({
+  type: REQUEST_MORE_RECIPES,
   searchTerm,
   diet,
 });
@@ -80,7 +87,7 @@ export const fetchRecipes = (searchTerm, diet) => {
 
 export const fetchMoreRecipes = (searchTerm, diet, recipes) => {
   return dispatch => {
-    dispatch(requestRecipes(searchTerm, diet));
+    dispatch(requestMoreRecipes(searchTerm, diet));
     const { dietQuery, searchTermQuery } = formatParams(searchTerm, diet);
 
     return axios({

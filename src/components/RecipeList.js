@@ -40,17 +40,24 @@ export default class RecipeList extends Component<Props> {
   };
 
   render() {
-    const { data, loading } = this.props;
+    const { data, loading, refreshing } = this.props;
     return (
       <View>
-        <FlatList
-          data={data}
-          keyExtractor={this.keyExtractor}
-          renderItem={this.renderItem}
-          initialNumToRender={10}
-          onEndReached={this.onEndReached}
-        />
-        {loading && <ActivityIndicator style={styles.loading} />}
+        {refreshing ? (
+          <ActivityIndicator style={styles.loading} />
+        ) : (
+          <View>
+            <FlatList
+              data={data}
+              keyExtractor={this.keyExtractor}
+              renderItem={this.renderItem}
+              initialNumToRender={10}
+              refreshing={refreshing}
+              onEndReached={this.onEndReached}
+            />
+            {loading && <ActivityIndicator style={styles.loading} />}
+          </View>
+        )}
         }
       </View>
     );
