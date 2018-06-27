@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Platform, StyleSheet, Text, View, Image } from "react-native";
-import { defaultCard } from "../constants";
+import { defaultCard, text2Color } from "../constants";
 import HeartBadge from "./HeartBadge";
 
 type Props = {
@@ -15,23 +15,27 @@ const RecipeCard = ({
   cookingTime,
   calories,
   imageSource,
+  onError,
 }: Props) => {
   return (
-    <View style={styles.container}>
-      <Image
-        style={{ width: 300, height: 170 }}
-        source={{ uri: imageSource }}
-      />
-      <View style={styles.badge}>
-        <HeartBadge />
-      </View>
+    <View style={styles.row}>
+      <View style={styles.cardContainer}>
+        <Image
+          style={styles.image}
+          source={{ uri: imageSource }}
+          onError={onError}
+        />
+        <View style={styles.badge}>
+          <HeartBadge />
+        </View>
 
-      <View style={styles.description}>
-        <Text style={styles.recipeName}>{recipeName}</Text>
-        <View style={styles.infoContainer}>
-          <Text style={styles.info}>{calories} cal</Text>
-          <Text>{" | "}</Text>
-          <Text style={styles.info}>{cookingTime} min</Text>
+        <View style={styles.description}>
+          <Text style={styles.recipeName}>{recipeName}</Text>
+          <View style={styles.infoContainer}>
+            <Text style={styles.info}>{calories.toFixed(0)} cal</Text>
+            <Text>{" | "}</Text>
+            <Text style={styles.info}>{cookingTime} min</Text>
+          </View>
         </View>
       </View>
     </View>
@@ -41,16 +45,28 @@ const RecipeCard = ({
 RecipeCard.defaultProps = defaultCard;
 
 const styles = StyleSheet.create({
-  container: {
+  row: {
+    flex: 1,
     justifyContent: "flex-start",
-    alignItems: "center",
-    padding: 10,
+    alignItems: "stretch",
+  },
+  cardContainer: {
+    borderRadius: 5,
+    borderColor: "white",
+    borderWidth: 1,
+    overflow: "hidden",
+    marginTop: 5,
+    marginBottom: 5,
+    marginLeft: 8,
+    marginRight: 8,
+  },
+  image: {
+    height: 200,
   },
   description: {
     justifyContent: "center",
     paddingLeft: 10,
     height: 50,
-    width: 300,
     backgroundColor: "white",
   },
   infoContainer: {
@@ -58,16 +74,18 @@ const styles = StyleSheet.create({
   },
   info: {
     fontSize: 16,
+    color: text2Color,
     fontFamily: "Raleway-Regular",
   },
   recipeName: {
     fontSize: 16,
+    color: text2Color,
     fontFamily: "Raleway-Bold",
   },
   badge: {
     position: "absolute",
     right: 50,
-    bottom: 33,
+    bottom: 24, // at size 18 the box is 54 x 54, description box is 50 tall
     zIndex: 10000,
   },
 });

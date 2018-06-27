@@ -8,20 +8,18 @@ type Props = {
 };
 
 export default class DietSelection extends Component<Props> {
-  state = { selectedIndex: 2 };
-
-  updateIndex = selectedIndex => {
-    this.setState({ selectedIndex });
+  onSelectIndex = index => {
+    this.props.onPress(this.props.diets[index]);
   };
 
   render() {
-    const { diets } = this.props;
-    const { selectedIndex } = this.state;
+    const { diets, onPress, selectedDiet } = this.props;
+    const selectedIndex = diets.indexOf(selectedDiet);
 
     return (
       <View style={styles.container}>
         <ButtonGroup
-          onPress={this.updateIndex}
+          onPress={this.onSelectIndex}
           selectedIndex={selectedIndex}
           buttons={diets}
           buttonStyle={styles.buttons}
@@ -35,6 +33,10 @@ export default class DietSelection extends Component<Props> {
     );
   }
 }
+
+DietSelection.defaultProps = {
+  selectedDiet: "Vegan",
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -65,7 +67,7 @@ const styles = StyleSheet.create({
     color: "#FFFFFF",
   },
   text: {
-    fontSize: 16,
+    fontSize: 15,
     fontFamily: "Raleway-Regular",
     fontWeight: "bold",
     color: "#151515",

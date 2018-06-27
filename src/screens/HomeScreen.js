@@ -2,28 +2,82 @@ import React, { Component } from "react";
 import { Platform, StyleSheet, Text, View } from "react-native";
 import DietSelection from "../components/DietSelection";
 import SearchBar from "../components/SearchBar";
-import RecipeCard from "../components/RecipeCard";
+import RecipeList from "../components/RecipeList";
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
+
+import * as actions from "../actions";
 
 import { diets } from "../constants";
 
 type Props = {};
-export default class HomeScreen extends Component<Props> {
+class HomeScreen extends Component<Props> {
   static navigationOptions = {
-    title: "HOME",
+    headerTitle: "Home",
+    headerTitleStyle: {
+      fontSize: 18,
+      fontFamily: "Raleway-Regular",
+      fontWeight: "200",
+    },
+  };
+
+  componentDidMount() {
+    // this.props.fetchRecipes(this.props.searchTerm, this.props.diet);
+  }
+
+  onSelectDiet = diet => {
+    this.props.changeDiet(diet);
+  };
+
+  onSubmit = searchTerm => {
+    this.props.fetchRecipes(searchTerm, this.props.diet);
+  };
+
+  onEndReached = () => {
+    this.props.fetchMoreRecipes(
+      this.props.searchTerm,
+      this.props.diet,
+      this.props.data,
+    );
   };
 
   render() {
+    const { data, loading, diet } = this.props;
     return (
       <View style={styles.container}>
-        <DietSelection diets={diets} />
-        <SearchBar />
-        <RecipeCard />
-        <RecipeCard />
-        <Text style={styles.welcome}>Hello World from Home!</Text>
+        <DietSelection
+          diets={diets}
+          onPress={this.onSelectDiet}
+          selectedDiet={diet}
+        />
+        <SearchBar onSubmit={this.onSubmit} />
+        <RecipeList
+          data={data}
+          loading={loading}
+          onEndReached={this.onEndReached}
+        />
       </View>
     );
   }
 }
+
+const mapStateToProps = (state, props) => {
+  return {
+    loading: state.recipes.loading,
+    data: state.recipes.data,
+    diet: state.diet,
+    searchTerm: state.searchTerm,
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators(actions, dispatch);
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(HomeScreen);
 
 const styles = StyleSheet.create({
   container: {
@@ -32,10 +86,8 @@ const styles = StyleSheet.create({
     alignItems: "stretch",
     backgroundColor: "#ECECEF",
   },
-  welcome: {
-    fontSize: 20,
+  headerTitleStyle: {
+    fontSize: 30,
     fontFamily: "Raleway-Regular",
-    textAlign: "center",
-    margin: 10,
   },
 });

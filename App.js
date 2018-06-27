@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { Platform, StyleSheet, Text, View } from "react-native";
+import { Provider } from "react-redux";
+import store from "./src/store";
 import {
   createStackNavigator,
   createBottomTabNavigator,
@@ -13,7 +15,11 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 type Props = {};
 export default class App extends Component<Props> {
   render() {
-    return <TabNavigation />;
+    return (
+      <Provider store={store}>
+        <TabNavigation />
+      </Provider>
+    );
   }
 }
 
@@ -23,7 +29,12 @@ const HomeStack = createStackNavigator({
 
 const TabNavigation = createBottomTabNavigator(
   {
-    Home: HomeStack,
+    Home: {
+      screen: HomeStack,
+      navigationOptions: {
+        tabBarLabel: "HOME",
+      },
+    },
     Favorites: FavoritesScreen,
     Explore: ExploreScreen,
   },

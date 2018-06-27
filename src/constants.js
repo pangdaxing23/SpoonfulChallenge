@@ -8,4 +8,9 @@ export const defaultCard = {
 };
 
 export const primaryColor = "#6C2DFC";
+export const text2Color = "#4D4D4D";
 export const defaultBadgeSize = 18;
+
+export const edamamApiSearch = "https://api.edamam.com/search";
+export const appId = "5068e33b";
+export const appKey = "e64d4057ad9d38b9257c03e49f5b876c";
