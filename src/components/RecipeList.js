@@ -47,6 +47,13 @@ export default class RecipeList extends Component<Props> {
           <ActivityIndicator style={styles.loading} />
         ) : (
           <View>
+            {!loading &&
+              !refreshing &&
+              !data.length && (
+                <View style={styles.instructionsContainer}>
+                  <Text style={styles.instructions}>Nothing here yet...</Text>
+                </View>
+              )}
             <FlatList
               data={data}
               keyExtractor={this.keyExtractor}
@@ -67,5 +74,13 @@ export default class RecipeList extends Component<Props> {
 const styles = StyleSheet.create({
   loading: {
     margin: 10,
+  },
+  instructions: {
+    fontSize: 22,
+    marginTop: 100,
+  },
+  instructionsContainer: {
+    alignItems: "center",
+    justifyContent: "center",
   },
 });

@@ -81,7 +81,7 @@ export const fetchRecipes = (searchTerm, diet) => {
         console.log(response);
         dispatch(receiveRecipes(searchTerm, diet, response.data.hits));
       })
-      .catch(err => console.error(err));
+      .catch(error => console.error(error.response));
   };
 };
 
@@ -107,6 +107,6 @@ export const fetchMoreRecipes = (searchTerm, diet, recipes) => {
         console.log(response);
         dispatch(receiveMoreRecipes(searchTerm, diet, response.data.hits));
       })
-      .catch(err => console.error(err));
+      .catch(error => console.error(error.response));
   };
 };

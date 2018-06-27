@@ -3,6 +3,7 @@ import { Platform, StyleSheet, Text, View } from "react-native";
 import DietSelection from "../components/DietSelection";
 import SearchBar from "../components/SearchBar";
 import RecipeList from "../components/RecipeList";
+import Ionicons from "react-native-vector-icons/Ionicons";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 
@@ -19,6 +20,14 @@ class HomeScreen extends Component<Props> {
       fontFamily: "Raleway-Regular",
       fontWeight: "200",
     },
+    headerLeft: (
+      <Ionicons
+        name={"ios-menu"}
+        color={"black"}
+        size={22}
+        style={{ marginLeft: 15 }}
+      />
+    ),
   };
 
   componentDidMount() {

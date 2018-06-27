@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Platform, StyleSheet, Text, View, Image } from "react-native";
 import { defaultCard, text2Color } from "../constants";
 import HeartBadge from "./HeartBadge";
+import moment from "moment";
 
 type Props = {
   recipeName: string,
@@ -17,6 +18,11 @@ const RecipeCard = ({
   imageSource,
   onError,
 }: Props) => {
+  const zeroCookingTime = cookingTime === 0;
+  const formattedCookingTime = zeroCookingTime
+    ? ""
+    : moment.duration(cookingTime, "m").humanize();
+
   return (
     <View style={styles.row}>
       <View style={styles.cardContainer}>
@@ -35,8 +41,8 @@ const RecipeCard = ({
           </Text>
           <View style={styles.infoContainer}>
             <Text style={styles.info}>{calories.toFixed(0)} cal</Text>
-            <Text>{" | "}</Text>
-            <Text style={styles.info}>{cookingTime} min</Text>
+            <Text>{!zeroCookingTime && " | "}</Text>
+            <Text style={styles.info}>{formattedCookingTime}</Text>
           </View>
         </View>
       </View>
@@ -56,7 +62,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     borderColor: "white",
     borderWidth: 1,
-    overflow: "hidden",
+    overflow: "hidden", // https://github.com/facebook/react-native/issues/2468
     marginTop: 5,
     marginBottom: 5,
     marginLeft: 8,
